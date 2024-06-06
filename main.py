@@ -3,6 +3,7 @@ import random
 
 # INICIALIZING PYGAME
 pg.init()
+pg.font.init()
 
 # ___________VARIABLES___________
 
@@ -32,6 +33,12 @@ def pos_point():
 def create_point(p_x, p_y):
     return pg.draw.rect(window, red, pg.Rect(p_x, p_y, 10, 10))
 
+# Count the points collecteds
+def points(count):
+    font = pg.font.SysFont('Comic Sans MS', 30)
+    text = font.render(f'Point: {count}', False, white)
+    return window.blit(text, (20, 20))
+
 def play_game():
     running = True
     
@@ -47,6 +54,8 @@ def play_game():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
+        
+        points(count)
         
         square = pg.draw.rect(window, white, pg.Rect(player_pos.x - 70, player_pos.y - 70, 70, 70))
 
